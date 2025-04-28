@@ -1260,7 +1260,6 @@ typedef struct ledRemap_s {
 
 #define MAGIC_LED_REMAP_SIZE 5
 
-
 //
 // Main config structure (less than 2KB)
 //
@@ -1395,7 +1394,16 @@ typedef struct mainConfig_s {
 	// offset 0x00000CBB (3259 decimal)
 	byte disable_web_server;
 	// offset 0x00000CBC (3260 decimal)
+#if PLATFORM_BEKEN
+	bool use_adv;
+	char psk[65];
+	char bssid[6];
+	int channel;
+	uint8_t security;
+	char unused[243];
+#else
 	char unused[324];
+#endif
 #endif
 } mainConfig_t;
 
